@@ -176,31 +176,44 @@ kubectl version --short --client
 pipeline {
     agent any
     
-    tools{
-        maven "Maven-3.9.9"
+    tools {
+        maven "maven-3.9.12"
     }
-
+    
     stages {
         stage('Clone Repo') {
             steps {
-                git 'https://github.com/ashokitschool/maven-web-app.git'
+                git 'https://github.com/kavyarangaiah/test1.git'
             }
         }
+        
         stage('Maven Build') {
             steps {
                 sh 'mvn clean package'
             }
         }
-        stage('Docker Image') {
-            steps {
-                sh 'docker build -t ashokit/mavenwebapp .'
+        stage('Docker Build & Push') {
+    steps {
+        script {
+            dockerImage = docker.build("dockerusername/dockerimagename:latest")
+            
+            docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-creds') {
+                dockerImage.push()
             }
         }
-        stage('k8s deployment') {
+    }
+    
+}
+        stage('K8s Deployment') {
             steps {
-                sh 'kubectl apply -f k8s-deploy.yml'
+                sh 'kubectl apply -f k8s-deploy.yml' 
             }
         }
+        stage('Force K8s Refresh') {
+    steps {
+        sh 'kubectl rollout restart deployment mavenwebappdeployment'
+    }
+}
     }
 }
 

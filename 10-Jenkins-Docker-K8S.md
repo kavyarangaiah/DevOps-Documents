@@ -7,7 +7,7 @@
 
 # Step - 1 : Create EKS Management Host in AWS #
 
-1) Launch new Ubuntu VM using AWS Ec2 ( t2.micro )	  
+1) Launch new Ubuntu VM using AWS Ec2 ( t2.micro or t3.small - check free tier)	  
 2) Connect to machine and install kubectl using below commands  
 ```
 curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/kubectl
@@ -55,18 +55,19 @@ eksctl create cluster --name cluster-name  \
 eksctl create cluster --name ashokit-cluster --region ap-south-1 --node-type t2.medium  --zones ap-south-1a,ap-south-1b
 ```
 
-Note: Cluster creation will take 5 to 10 mins of time (we have to wait). After cluster created we can check nodes using below command.	
+Note: Cluster creation will take 10 to 15 mins of time (we have to wait). After cluster created we can check nodes using below command.	
 ```
 kubectl get nodes  
 ```
 
 # Step-4 : Jenkins Server Setup in Linux VM #
 
-1) Create Ubuntu VM using AWS EC2 (t2.medium) <br/>
+1) Create Ubuntu VM using AWS EC2 (t2.medium / check free tier) <br/>
 2) Enable 8080 Port Number in Security Group Inbound Rules
 3) Connect to VM using MobaXterm
-4) Instal Java
+4) Install Java
 
+https://www.jenkins.io/doc/book/installing/linux/ 
 ```
 sudo apt update
 sudo apt install fontconfig openjdk-17-jre
@@ -153,7 +154,12 @@ kubectl version --short --client
 	$ sudo mkdir .kube  <br/>
 	$ sudo vi .kube/config  <br/>
 
-3) Execute below commands in Jenkins Server and paste kube config file for ubuntu user to check EKS Cluster info<br/>
+from EKS host copy (left click) config file data
+in jenkins server, press i to enter into insert mode, paste the data (right click), press escape and then type :wq, press enter
+To check the data, execute below command in jenkins server
+    $ sudo cat .kube/config
+	
+3) Execute below commands in Jenkins Server
 
 ```
  aws eks update-kubeconfig --region ap-south-1 --name <your-eks-cluster-name>

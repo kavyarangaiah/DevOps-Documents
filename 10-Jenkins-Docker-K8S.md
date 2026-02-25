@@ -32,6 +32,7 @@ eksctl version
 ```
 
 # Step - 2 : Create IAM role & attach to EKS Management Host & Jenkins Server #
+<img width="904" height="256" alt="image" src="https://github.com/user-attachments/assets/17c34c59-aa99-46f6-bdda-3200216a9d32" />
 
 1) Create New Role using IAM service ( Select Usecase - ec2 ) 	
 2) Add below permissions for the role <br/>
@@ -40,7 +41,7 @@ eksctl version
 3) Enter Role Name (eksroleec2) 
 4) Attach created role to EKS Management Host (Select EC2 => Click on Security => Modify IAM Role => attach IAM role we have created) 
 5) Attach created role to Jenkins Machine (Select EC2 => Click on Security => Modify IAM Role => attach IAM role we have created) 
-  
+
 # Step - 3 : Create EKS Cluster using eksctl # 
 **Syntax:** 
 
@@ -97,7 +98,7 @@ sudo systemctl start jenkins
 sudo systemctl status jenkins
 ```
 	
-8) Open jenkins server in browser using VM public ip
+8) Open jenkins server in browser using VM public ip (add 8080 in jenkins server VM)
 
 ```
 http://public-ip:8080/

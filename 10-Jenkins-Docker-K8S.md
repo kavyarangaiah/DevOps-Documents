@@ -250,7 +250,7 @@ pipeline {
 
 # Step - 13 : Access Application in Browser #
 - **We should be able to access our application** <br/>
-URL : http://LB-DNS/maven-web-app (As mentioned in dockerfile tomcat)
+URL : http://***LB-DNS-Name***/maven-web-app (maven-web-app mentioned in dockerfile tomcat)
 	
 # We are done with our Setup #
 	

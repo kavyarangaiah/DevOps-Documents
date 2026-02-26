@@ -54,7 +54,7 @@ eksctl create cluster --name cluster-name  \
 eksctl create cluster --name ashokit-cluster --region ap-south-1 --node-type t2.medium  --zones ap-south-1a,ap-south-1b
 ```
 
-Note: Cluster creation will take 10 to 15 mins of time (we have to wait). After cluster created we can check nodes using below command.	
+Note: Cluster creation will take 10 to 15 mins of time (we have to wait and check in the respective region in AWS). After cluster created we can check nodes using below command.	
 ```
 kubectl get nodes  
 ```

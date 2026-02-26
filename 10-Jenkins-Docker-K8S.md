@@ -161,15 +161,17 @@ kubectl version --short --client
 ```
 2) Execute below commands in Jenkins Server and paste kube config file  <br/>
 ```
-	$ cd /var/lib/jenkins <br/>
-	$ sudo mkdir .kube  <br/>
-	$ sudo vi .kube/config  <br/>
+	$ cd /var/lib/jenkins 
+	$ sudo mkdir .kube  
+	$ sudo vi .kube/config 
 ```
-    From EKS host copy (left click) config file data
-    In jenkins server, press i to enter into insert mode, paste the data (right click), press escape and then type :wq, press enter <br/>
-    To check the data, execute below command in jenkins server
+From EKS host copy (left click) config file data <br/>
+In jenkins server, press i to enter into insert mode, paste the data (right click), press escape and then type :wq, press enter <br/>
+To check the data, execute below command in jenkins server
+```
     $ sudo cat .kube/config
-	
+```
+
 3) Execute below commands in Jenkins Server
 
 ```
@@ -177,8 +179,9 @@ kubectl version --short --client
 ```
 
 4) check eks nodes <br/>
+```
 	$ kubectl get nodes 
-
+```
 **Note: We should be able to see EKS cluster nodes here.**
 
 # Step - 11 : Create Jenkins CI CD Job #

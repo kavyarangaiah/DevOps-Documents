@@ -156,13 +156,15 @@ kubectl version --short --client
 # Step - 10 : Update EKS Cluster Config File in Jenkins Server #
 	
 1) Execute below command in Eks Management host & copy kube config file data <br/>
+```
 	$ cat .kube/config 
-
+```
 2) Execute below commands in Jenkins Server and paste kube config file  <br/>
+```
 	$ cd /var/lib/jenkins <br/>
 	$ sudo mkdir .kube  <br/>
 	$ sudo vi .kube/config  <br/>
-
+```
     From EKS host copy (left click) config file data
     In jenkins server, press i to enter into insert mode, paste the data (right click), press escape and then type :wq, press enter <br/>
     To check the data, execute below command in jenkins server

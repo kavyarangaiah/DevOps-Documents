@@ -254,5 +254,5 @@ URL : http://***LB-DNS-Name***/maven-web-app (maven-web-app mentioned in dockerf
 	
 # We are done with our Setup #
 	
-## Step - 13: After your practise, delete Cluster and other resources we have used in AWS Cloud to avoid billing ##
-## DELETE ALL INSTANCES, CLUSTERS, NODES, LBs <br/> DISABLE/DELETE AUTOPAY ENABLED IN UPI TOWARDS AWS ##
+**Step - 13: After your practise, delete Cluster and other resources we have used in AWS Cloud to avoid billing**
+**DELETE ALL INSTANCES, CLUSTERS, NODES, LBs <br/> DISABLE/DELETE AUTOPAY ENABLED IN UPI TOWARDS AWS**

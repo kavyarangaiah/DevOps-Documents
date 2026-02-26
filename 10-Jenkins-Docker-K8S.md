@@ -118,17 +118,17 @@ sudo docker version
 ```
 ## Step-6 : Jenkins/Maven/Docker configurations ##
 1) Configure Maven as Global Tool in Jenkins: Manage Jenkins -> Tools -> Maven Installation -> Add maven <br/>
-2) Create docker account URL: https://hub.docker.com/ 
+2) Create docker account URL: https://hub.docker.com/ <br/>
 3) Install docker plugin: Manage Jenkins -> plugins -> available plugins -> docker pipeline -> install <br/>
-       Select restart Jenkins when installation is complete
-       After restart under installed plugins we can see
-4) For docker credentials setup: Mange Jenkins -> credentials -> system -> global -> add credentials -> username with pswd
-       Username: your docker username
-       Password: docker pswd
-       ID: dockerhub-creds 
-       Description: DockerHub
-       Click Save
-       Verify After saving, you must see: ID: dockerhub-creds
+       Select restart Jenkins when installation is complete <br/>
+       After restart under installed plugins we can see <br/>
+4) For docker credentials setup: Mange Jenkins -> credentials -> system -> global -> add credentials -> username with pswd <br/>
+       Username: your docker username <br/>
+       Password: docker pswd <br/>
+       ID: dockerhub-creds  <br/>
+       Description: DockerHub <br/>
+       Click Save <br/>
+       Verify After saving, you must see: ID: dockerhub-creds <br/>
    
 # Step - 8 : Install AWS CLI in JENKINS Server #
 

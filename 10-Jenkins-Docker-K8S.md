@@ -186,7 +186,7 @@ kubectl version --short --client
 - **Stage-3 : Create & Push Docker Image to Registry** <br/>
    dockerusername/dockerimagename:latest -> dockerusername must be your docker username ( step5(3) ) and the same must be updated in k8s-deploy.yml <br/>
 - **Stage-4 : Deploy app in k8s eks cluster** <br/>
-- **Stage-5 : Restart the cluster** <br/>
+- **Stage-5 : Restart the deployment** <br/>
 
 ```
 pipeline {

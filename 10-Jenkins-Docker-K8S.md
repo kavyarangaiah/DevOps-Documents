@@ -158,30 +158,30 @@ kubectl version --short --client
 	
 1) Execute below command in **Eks Management host** & copy kube config file data <br/>
 ```
-	cat .kube/config 
+cat .kube/config 
 ```
 2) Execute below commands in **Jenkins Server** and paste kube config file  <br/>
 ```
-	cd /var/lib/jenkins 
-	sudo mkdir .kube  
-	sudo vi .kube/config 
+cd /var/lib/jenkins 
+sudo mkdir .kube  
+sudo vi .kube/config 
 ```
 From EKS host copy (left click) config file data <br/>
 In jenkins server, press i to enter into insert mode, paste the data (right click), press escape and then type :wq, press enter <br/>
 To check the data, execute below command in jenkins server
 ```
-    sudo cat .kube/config
+sudo cat .kube/config
 ```
 
 3) Execute below commands in Jenkins Server
 
 ```
- aws eks update-kubeconfig --region ap-south-1 --name <your-eks-cluster-name>
+aws eks update-kubeconfig --region ap-south-1 --name <your-eks-cluster-name>
 ```
 
 4) check eks nodes <br/>
 ```
-	kubectl get nodes 
+kubectl get nodes 
 ```
 **Note: We should be able to see EKS cluster nodes here.**
 
@@ -243,10 +243,10 @@ pipeline {
 ```
 # Step - 12 : Once deployed, can execute below line by line in Jenkins VM #
 ```
-  sudo docker images
-  kubectl get svc
-  kubectl get pods
-  kubectl get deployments
+sudo docker images
+kubectl get svc
+kubectl get pods
+kubectl get deployments
 ```
 
 # Step - 13 : Access Application in Browser #

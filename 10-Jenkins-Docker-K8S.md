@@ -8,7 +8,7 @@
 
 # Step - 1 : Create EKS Management Host in AWS #
 
-1) Launch new Ubuntu VM using AWS Ec2 ( t2.micro or t3.small or c7i-flex.large - check free tier)	  
+1) Launch new Ubuntu VM using AWS Ec2 ( t2.micro or t3.small or c7i-flex.large - check free tier)
 2) Connect to machine via MobaXterm and install kubectl using below commands  
 ```
 curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/kubectl
@@ -131,7 +131,7 @@ sudo docker version
        Click Save <br/>
        Verify After saving, you must see: ID: dockerhub-creds <br/>
    
-# Step - 8 : Install AWS CLI in JENKINS Server #
+# Step-7 : Install AWS CLI in JENKINS Server #
 
 URL : https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html  
 
@@ -144,7 +144,7 @@ sudo ./aws/install
 aws --version
 ```
  
-# Step - 9 : Install Kubectl in JENKINS Server #
+# Step-8 : Install Kubectl in JENKINS Server #
 **Execute below commands in Jenkins server to install kubectl**
 
 ```
@@ -154,7 +154,7 @@ sudo mv ./kubectl /usr/local/bin
 kubectl version --short --client
 ```
 
-# Step - 10 : Update EKS Cluster Config File in Jenkins Server #
+# Step-9 : Update EKS Cluster Config File in Jenkins Server #
 	
 1) Execute below command in **Eks Management host** & copy kube config file data <br/>
 ```
@@ -185,7 +185,7 @@ kubectl get nodes
 ```
 **Note: We should be able to see EKS cluster nodes here.**
 
-# Step - 11 : Create Jenkins CI CD Job #
+# Step-10 : Create Jenkins CI CD Job #
 
 - **Stage-1 : Clone Git Repo** <br/> 
 - **Stage-2 : Maven Build** <br/>
@@ -241,7 +241,7 @@ pipeline {
 }
 
 ```
-# Step - 12 : Once deployed, can execute below line by line in Jenkins VM #
+# Step-11 : Once deployed, can execute below line by line in Jenkins VM #
 ```
 sudo docker images
 kubectl get svc
@@ -249,12 +249,12 @@ kubectl get pods
 kubectl get deployments
 ```
 
-# Step - 13 : Access Application in Browser #
+# Step-12 : Access Application in Browser #
 - **We should be able to access our application** <br/>
 URL : http://***LB-DNS-Name***/maven-web-app (maven-web-app mentioned in dockerfile tomcat)
 	
 # We are done with our Setup #
 	
-**Step - 13: After your practise, delete Cluster and other resources we have used in AWS Cloud to avoid billing <br/>**
+**Step-13: After your practise, delete Cluster and other resources we have used in AWS Cloud to avoid billing <br/>**
 
 **DELETE ALL INSTANCES, CLUSTERS, NODES, LBs <br/> DISABLE/DELETE AUTOPAY ENABLED IN UPI TOWARDS AWS**

@@ -109,28 +109,27 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 	   
 10) Create Admin Account & Install Required Plugins in Jenkins
 
-
-## Step-5 : Jenkins configurations ##
-1) Configure Maven as Global Tool in Jenkins: Manage Jenkins -> Tools -> Maven Installation -> Add maven <br/>
-2) Install docker plugin: Manage Jenkins -> plugins -> available plugins -> docker pipeline -> install <br/>
-       Select restart Jenkins when installation is complete
-       After restart under installed plugins we can see
-3) For docker credentials setup: Mange Jenkins -> credentials -> system -> global -> add credentials -> username with pswd
-       Username: your docker username
-       Password: docker pswd
-       ID: dockerhub-creds 
-       Description: DockerHub
-       Click Save
-       Verify After saving, you must see: ID: dockerhub-creds
-
-
-## Step-6 : Setup Docker in Jenkins ##
+## Step-5 : Setup Docker in Jenkins ##
 ```
 curl -fsSL get.docker.com | /bin/bash
 sudo usermod -aG docker jenkins
 sudo systemctl restart jenkins
 sudo docker version
 ```
+## Step-6 : Jenkins/Maven/Docker configurations ##
+1) Configure Maven as Global Tool in Jenkins: Manage Jenkins -> Tools -> Maven Installation -> Add maven <br/>
+2) Create docker account URL: https://hub.docker.com/ 
+3) Install docker plugin: Manage Jenkins -> plugins -> available plugins -> docker pipeline -> install <br/>
+       Select restart Jenkins when installation is complete
+       After restart under installed plugins we can see
+4) For docker credentials setup: Mange Jenkins -> credentials -> system -> global -> add credentials -> username with pswd
+       Username: your docker username
+       Password: docker pswd
+       ID: dockerhub-creds 
+       Description: DockerHub
+       Click Save
+       Verify After saving, you must see: ID: dockerhub-creds
+   
 # Step - 8 : Install AWS CLI in JENKINS Server #
 
 URL : https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html  

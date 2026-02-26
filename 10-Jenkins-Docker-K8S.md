@@ -242,10 +242,10 @@ pipeline {
 ```
 # Step - 12 : Once deployed, can execute below line by line in Jenkins VM #
 ```
-  $ sudo docker images <br/>
-  $ kubectl get svc <br/>
-  $ kubectl get pods <br/>
-  $ kubectl get deployments <br/>
+  $ sudo docker images
+  $ kubectl get svc
+  $ kubectl get pods
+  $ kubectl get deployments
 ```
 
 # Step - 13 : Access Application in Browser #

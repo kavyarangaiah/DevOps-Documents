@@ -4,6 +4,7 @@
 3) Jenkins
 4) Docker
 5) Kubernetes
+<img width="940" height="485" alt="image" src="https://github.com/user-attachments/assets/ee61e6fe-6475-417a-b853-d631f6740fdb" />
 
 # Step - 1 : Create EKS Management Host in AWS #
 

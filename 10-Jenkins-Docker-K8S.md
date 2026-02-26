@@ -35,9 +35,7 @@ eksctl version
 <img width="904" height="256" alt="image" src="https://github.com/user-attachments/assets/17c34c59-aa99-46f6-bdda-3200216a9d32" />
 
 1) Create New Role using IAM service ( Select Usecase - ec2 ) 	
-2) Add below permissions for the role <br/>
-	- Administrator - acces <br/>
-		
+2) Add above permissions as shown in image for the role <br/>		
 3) Enter Role Name (eksroleec2) 
 4) Attach created role to EKS Management Host (Select EC2 => Click on Security => Modify IAM Role => attach IAM role we have created) 
 5) Attach created role to Jenkins Machine (Select EC2 => Click on Security => Modify IAM Role => attach IAM role we have created) 
@@ -68,7 +66,7 @@ kubectl get nodes
 3) Connect to VM using MobaXterm
 4) Install Java
 
-https://www.jenkins.io/doc/book/installing/linux/ 
+URL: https://www.jenkins.io/doc/book/installing/linux/ 
 ```
 sudo apt update
 sudo apt install fontconfig openjdk-17-jre
@@ -98,7 +96,7 @@ sudo systemctl start jenkins
 sudo systemctl status jenkins
 ```
 	
-8) Open jenkins server in browser using VM public ip (add 8080 in jenkins server VM)
+8) Open jenkins server in browser using VM public ip
 
 ```
 http://public-ip:8080/
@@ -112,8 +110,19 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 10) Create Admin Account & Install Required Plugins in Jenkins
 
 
-## Step-5 : Configure Maven as Global Tool in Jenkins ##
-1) Manage Jenkins -> Tools -> Maven Installation -> Add maven <br/>
+## Step-5 : Jenkins configurations ##
+1) Configure Maven as Global Tool in Jenkins: Manage Jenkins -> Tools -> Maven Installation -> Add maven <br/>
+2) Install docker plugin: Manage Jenkins -> plugins -> available plugins -> docker pipeline -> install <br/>
+       Select restart Jenkins when installation is complete
+       After restart under installed plugins we can see
+3) For docker credentials setup: Mange Jenkins -> credentials -> system -> global -> add credentials -> username with pswd
+       Username: your docker username
+       Password: docker pswd
+       ID: dockerhub-creds 
+       Description: DockerHub
+       Click Save
+       Verify After saving, you must see: ID: dockerhub-creds
+
 
 ## Step-6 : Setup Docker in Jenkins ##
 ```
@@ -155,9 +164,9 @@ kubectl version --short --client
 	$ sudo mkdir .kube  <br/>
 	$ sudo vi .kube/config  <br/>
 
-from EKS host copy (left click) config file data
-in jenkins server, press i to enter into insert mode, paste the data (right click), press escape and then type :wq, press enter
-To check the data, execute below command in jenkins server
+    From EKS host copy (left click) config file data
+    In jenkins server, press i to enter into insert mode, paste the data (right click), press escape and then type :wq, press enter <br/>
+    To check the data, execute below command in jenkins server
     $ sudo cat .kube/config
 	
 3) Execute below commands in Jenkins Server
@@ -175,9 +184,10 @@ To check the data, execute below command in jenkins server
 
 - **Stage-1 : Clone Git Repo** <br/> 
 - **Stage-2 : Maven Build** <br/>
-- **Stage-3 : Create Docker Image** <br/>
-- **Stage-4 : Push Docker Image to Registry** <br/>
-- **Stage-5 : Deploy app in k8s eks cluster** <br/>
+- **Stage-3 : Create & Push Docker Image to Registry** <br/>
+   dockerusername/dockerimagename:latest -> dockerusername must be your docker username ( step5(3) ) and the same must be updated in k8s-deploy.yml <br/>
+- **Stage-4 : Deploy app in k8s eks cluster** <br/>
+- **Stage-5 : Restart the cluster** <br/>
 
 ```
 pipeline {
@@ -216,6 +226,7 @@ pipeline {
                 sh 'kubectl apply -f k8s-deploy.yml' 
             }
         }
+
         stage('Force K8s Refresh') {
     steps {
         sh 'kubectl rollout restart deployment mavenwebappdeployment'
@@ -225,10 +236,16 @@ pipeline {
 }
 
 ```
-	
-# Step - 12 : Access Application in Browser #
+# Step - 12 : Once deployed, can execute below in Jenkins VM #
+  $ sudo docker images
+  $ kubectl get svc
+  $ kubectl get pods 
+  $ kubectl get deployments
+
+
+# Step - 13 : Access Application in Browser #
 - **We should be able to access our application** <br/>
-URL : http://LBR/context-path/
+URL : http://LB-DNS/maven-web-app (As mentioned in dockerfile tomcat)
 	
 # We are done with our Setup #
 	

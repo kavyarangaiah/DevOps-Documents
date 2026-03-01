@@ -183,9 +183,15 @@ aws eks update-kubeconfig --region ap-south-1 --name <your-eks-cluster-name>
 ```
 kubectl get nodes 
 ```
-**Note: We should be able to see EKS cluster nodes here.**
+**Note: We should be able to see EKS cluster nodes here.** <br/>
+**Now all environment setup is done, you're good to run CI/CD pipeline**
 
 # Step-10 : Create Jenkins CI CD Job #
+
+**Set Github**
+1. Go to https://github.com/kavyarangaiah/test1 and fork it to your Git account <br/>
+2. To run Pipeline Go to Jenkins UI, create a new job, give name > select pipeline > OK <br/>
+3. Once pipeline is selected, go to the job > configure > scroll down and under pipeline script, copy the below code and apply > save <br/>
 
 - **Stage-1 : Clone Git Repo** <br/> 
 - **Stage-2 : Maven Build** <br/>
@@ -193,7 +199,6 @@ kubectl get nodes
    dockerusername/dockerimagename:latest -> dockerusername must be your docker username ( step5(3) ) and the same must be updated in k8s-deploy.yml <br/>
 - **Stage-4 : Deploy app in k8s eks cluster** <br/>
 - **Stage-5 : Restart the deployment** <br/>
-
 ```
 pipeline {
     agent any
@@ -243,9 +248,9 @@ pipeline {
 ```
 # Step-11 : Once deployed, can execute below line by line in Jenkins VM #
 ```
-sudo docker images
-kubectl get svc
-kubectl get pods
+sudo docker images --> this should display the name of docker image build and also its pushed to repository
+kubectl get svc --> this should display both Cluster & Loadbalancer details
+kubectl get pods --> this should display 2/2 running
 kubectl get deployments
 ```
 
